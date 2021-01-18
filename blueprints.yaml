@@ -49,12 +49,35 @@ form:
               validate:
                 type: bool
 
+            built_in_js:
+              type: toggle
+              label: PLUGIN_VIMEO.PLUGIN_JS
+              highlight: 1
+              default: 1
+              options:
+                1: PLUGIN_VIMEO.ENABLED
+                0: PLUGIN_VIMEO.DISABLED
+              validate:
+                type: bool
+
             editor_button:
               type: toggle
               label: PLUGIN_VIMEO.EDITOR_BUTTON
               help: PLUGIN_VIMEO.EDITOR_BUTTON_HELP
               highlight: 1
               default: 1
+              options:
+                1: PLUGIN_VIMEO.ENABLED
+                0: PLUGIN_VIMEO.DISABLED
+              validate:
+                type: bool
+
+            lazy_load:
+              type: toggle
+              label: PLUGIN_VIMEO.LAZY_LOAD
+              help: PLUGIN_VIMEO.LAZY_LOAD_HELP
+              hightlight: 1
+              default: 0
               options:
                 1: PLUGIN_VIMEO.ENABLED
                 0: PLUGIN_VIMEO.DISABLED

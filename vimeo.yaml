@@ -1,6 +1,8 @@
 enabled: true
 plugin_css: true
+built_in_js: true
 editor_button: true
+lazy_load: false
 
 player_parameters:
   autopause: true

@@ -2,15 +2,60 @@
   position: relative;
   overflow: hidden;
   height: 0;
-  padding-top: 25px;
-  padding-bottom: 50%;
+  padding-bottom: 56.25%;
   margin-bottom: 10px;
   max-width: 1920px;
-  max-height: 1080px; }
+  max-height: 1080px;
+}
 
 .grav-vimeo iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+}
+
+
+
+.grav-vimeo--lazyloaded {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.grav-vimeo--lazyloaded button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 68px;
+  height: 48px;
+  margin-left: -34px;
+  margin-top: -24px;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+.grav-vimeo--lazyloaded iframe:not([src]) {
+  display: none;
+}
+
+.grav-vimeo--lazyloaded iframe[src] + button {
+  display: none;
+}
+
+.grav-vimeo--lazyloaded path:first-of-type {
+  -webkit-transition: fill .1s cubic-bezier(0.0,0.0,0.2,1), fill-opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+  -o-transition: fill .1s cubic-bezier(0.0,0.0,0.2,1), fill-opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+  transition: fill .1s cubic-bezier(0.0,0.0,0.2,1), fill-opacity .1s cubic-bezier(0.0,0.0,0.2,1)
+}
+
+.grav-vimeo--lazyloaded:hover path:first-of-type,
+.grav-vimeo--lazyloaded button:focus path:first-of-type {
+  fill: #00adef;
+  fill-opacity: 1;
+}

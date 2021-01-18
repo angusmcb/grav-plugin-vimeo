@@ -56,6 +56,7 @@ class VimeoTwigExtension extends \Twig_Extension
         return [
           new \Twig_SimpleFunction('vimeo_embed_url', [$this, 'embedUrl']),
           new \Twig_SimpleFunction('vimeo_embed_video', [$this, 'embedVideo']),
+          new \Twig_SimpleFunction('vimeo_thumbnail_url', [$this, 'thumbnailUrl']),
         ];
     }
 
@@ -88,5 +89,16 @@ class VimeoTwigExtension extends \Twig_Extension
         if ($div) $code = "<div class=\"grav-vimeo\">{$code}</div>";
 
         return $code;
+    }
+
+    public function thumbnailUrl($video_id)
+    {
+        if( !$video_id ) return false;
+    
+        $data = json_decode( file_get_contents( 'http://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' . $video_id ) );
+
+        if( !$data ) return false;
+    
+        return $data->thumbnail_url;
     }
 }

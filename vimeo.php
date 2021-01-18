@@ -74,6 +74,10 @@ class VimeoPlugin extends Plugin
             $this->grav['assets']->add('plugin://vimeo/css/vimeo.css');
         }
 
+        if (!$this->isAdmin() && $this->config->get('plugins.vimeo.built_in_js')) {
+            $this->grav['assets']->add('plugin://vimeo/js/vimeo.js');
+        }
+
         if ($this->isAdmin() && $this->config->get('plugins.vimeo.editor_button')) {
             $plugin_translations = $this->grav['languages'][$this->locale]['PLUGIN_VIMEO'];
             $translations = [
@@ -105,11 +109,18 @@ class VimeoPlugin extends Plugin
             // double check to make sure we found a valid Vimeo video ID
             if (!isset($matches[1])) return $search;
 
-            // build the replacement embed HTML string
-            $replace = $twig->processTemplate('partials/vimeo.html.twig', [
+            $options = [
                 'video_id' => $matches[1],
-                'player_parameters' => $config->get('player_parameters', [])
-            ]);
+                'player_parameters' => $config->get('player_parameters', []),
+                'lazy_load' => $config->get('lazy_load')
+            ];
+
+            //If lazy loading, then autoplay
+            if ($options['lazy_load']) $options['player_parameters']['autoplay'] = true;
+
+
+            // build the replacement embed HTML string
+            $replace = $twig->processTemplate('partials/vimeo.html.twig', $options);
 
             // do the replacement
             return str_replace($search, $replace, $search);
