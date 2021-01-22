@@ -95,7 +95,7 @@ class VimeoTwigExtension extends \Twig_Extension
     {
         if( !$video_id ) return false;
     
-        $data = json_decode( file_get_contents( 'http://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' . $video_id ) );
+        $data = json_decode( file_get_contents( 'https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' . $video_id ) );
 
         if( !$data ) return false;
     
